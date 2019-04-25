@@ -1,0 +1,6 @@
+*.rc filter=utf16lebom
+
+# it's also required to add these lines to .git/config:
+# [filter "utf16lebom"]
+# 	smudge = nkf -w16Lxu
+# 	clean = nkf -w80xu

@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,96 +13,84 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// 日本語 (日本) resources
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-#pragma code_page(1252)
-#endif //_WIN32
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 551, 335
-STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+IDD_DIALOG1 DIALOGEX 0, 0, 551, 335
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "LICEcap"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    PUSHBUTTON      "Insert...",IDC_INSERT,430,320,41,12
-    PUSHBUTTON      "Record...",IDC_REC,474,320,41,12
-    PUSHBUTTON      "Stop",IDC_STOP,517,320,30,12
-    LTEXT           "Max FPS:",IDC_MAXFPS_LBL,4,322,32,8
-    EDITTEXT        IDC_MAXFPS,37,320,17,12,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "Size:",IDC_DIMLBL_1,61,322,16,8
-    EDITTEXT        IDC_XSZ,80,320,21,12,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "x",IDC_DIMLBL,103,322,8,8
-    EDITTEXT        IDC_YSZ,110,320,21,12,ES_AUTOHSCROLL | ES_NUMBER
-    CONTROL         "Status (i.e. 640x480 x fps 3:21 etc)",IDC_STATUS,"Static",
-                    SS_LEFTNOWORDWRAP | WS_GROUP,7,322,420,8
+    PUSHBUTTON      "挿入(&I)...",IDC_INSERT,374,320,56,13
+    PUSHBUTTON      "録画(&R)...",IDC_REC,433,320,56,13
+    PUSHBUTTON      "停止(&S)",IDC_STOP,492,320,56,13
+    LTEXT           "最大 FPS(&M):",IDC_MAXFPS_LBL,4,322,45,8
+    EDITTEXT        IDC_MAXFPS,50,320,17,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "サイズ(&Z):",IDC_DIMLBL_1,76,322,34,8
+    EDITTEXT        IDC_XSZ,110,320,21,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "x",IDC_DIMLBL,133,322,8,8
+    EDITTEXT        IDC_YSZ,140,320,21,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "状態 (例: 640x480 x fps 3:21 等)",IDC_STATUS,7,322,362,8
     CONTROL         "",IDC_VIEWRECT,"Static",SS_BLACKFRAME,4,4,543,314
 END
 
-IDD_SAVEOPTS DIALOGEX 0, 0, 317, 93
-STYLE DS_CONTROL | WS_CHILD | WS_CLIPSIBLINGS
+IDD_SAVEOPTS DIALOGEX 0, 0, 317, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD | WS_CLIPSIBLINGS
 EXSTYLE WS_EX_CONTROLPARENT
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Shell Dlg", 400, 0, 0x80
 BEGIN
-    GROUPBOX        "Display in animation",IDC_STATIC,0,4,99,51
-    CONTROL         "title frame:",IDC_TITLEUSE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,6,18,45,10
-    EDITTEXT        IDC_MS,54,16,26,13,ES_AUTOHSCROLL
-    LTEXT           "sec",IDC_STATIC,82,18,14,8
-    CONTROL         "elapsed time",IDC_TIMELINE,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,6,31,76,10
-    CONTROL         "mouse button press",IDC_MOUSECAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,6,43,75,10
-    EDITTEXT        IDC_TITLE,105,8,208,36,ES_MULTILINE | ES_WANTRETURN
-    CONTROL         "Big font",IDC_BIGFONT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,275,46,37,10
-    PUSHBUTTON      "WEBM options...",IDC_BUTTON1,238,77,75,14
-    CONTROL         "Control+Alt+P pauses recording",IDC_SSPAUSE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,105,46,115,10
-    LTEXT           ".GIF repeat count (0=infinite):",IDC_STATIC,0,63,92,8
-    EDITTEXT        IDC_LOOPCNT,94,61,34,13,ES_AUTOHSCROLL
-    CONTROL         "Use .GIF transparency for smaller files",IDC_CHECK1,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,62,134,10
-    CONTROL         "Automatically stop after",IDC_CHECK2,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,2,78,87,10
-    EDITTEXT        IDC_STOPAFTER_SEC,92,77,26,13,ES_AUTOHSCROLL
-    LTEXT           "seconds",IDC_STOPAFTER_SEC_LBL,120,79,28,8
+    GROUPBOX        "動画内に表示",IDC_STATIC,0,3,99,52
+    CONTROL         "題字(&L):",IDC_TITLEUSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,15,42,10
+    EDITTEXT        IDC_MS,48,13,26,13,ES_AUTOHSCROLL
+    LTEXT           "秒",IDC_STATIC,77,16,11,8
+    CONTROL         "経過時間(&E)",IDC_TIMELINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,27,59,10
+    CONTROL         "マウスクリック(&M)",IDC_MOUSECAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,39,75,10
+    EDITTEXT        IDC_TITLE,105,6,208,38,ES_MULTILINE | ES_WANTRETURN
+    CONTROL         "大きなフォント(&F)",IDC_BIGFONT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,248,47,65,10
+    PUSHBUTTON      "WEBM オプション(&W)...",IDC_BUTTON1,232,77,81,14
+    CONTROL         "[Ctrl+Alt+P] で録画を一時停止する(&P)",IDC_SSPAUSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,105,47,141,10
+    LTEXT           ".GIF 繰り返し回数 (0=無限) (&R):",IDC_STATIC,2,63,109,8
+    EDITTEXT        IDC_LOOPCNT,111,61,34,13,ES_AUTOHSCROLL
+    CONTROL         ".GIF 透明度を使用して容量を削減する(&U)",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,165,62,148,10
+    CONTROL         "自動停止(&A):",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,78,59,10
+    EDITTEXT        IDC_STOPAFTER_SEC,62,77,26,13,ES_AUTOHSCROLL
+    LTEXT           "秒後",IDC_STOPAFTER_SEC_LBL,91,79,21,8
 END
 
 IDD_INSERT DIALOGEX 0, 0, 281, 122
-STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
-CAPTION "Insert text frame"
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "文字カットを追加（※英字のみ）"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_EDIT,5,5,270,96,ES_MULTILINE | ES_AUTOVSCROLL | 
-                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Duration:",IDC_STATIC,5,108,32,8
-    EDITTEXT        IDC_MS,39,106,27,12,ES_AUTOHSCROLL
-    LTEXT           "Alpha:",IDC_STATIC,80,108,25,8
-    EDITTEXT        IDC_ALPHA,105,106,27,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Insert (0)",IDOK,190,106,41,12
-    PUSHBUTTON      "Close",IDCANCEL,235,106,41,12
+    EDITTEXT        IDC_EDIT,5,5,270,96,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "表示時間(&D):",IDC_STATIC,5,108,47,8
+    EDITTEXT        IDC_MS,53,106,27,12,ES_AUTOHSCROLL
+    LTEXT           "不透明度(&A):",IDC_STATIC,93,108,45,8
+    EDITTEXT        IDC_ALPHA,141,106,27,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "挿入[0] (&I)",IDOK,181,106,47,12
+    PUSHBUTTON      "閉じる(&C)",IDCANCEL,232,106,44,12
 END
 
-IDD_OPTIONS DIALOG DISCARDABLE  0, 0, 317, 78
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "WEBM options"
-FONT 8, "MS Sans Serif"
+IDD_OPTIONS DIALOGEX 0, 0, 317, 78
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WEBM オプション"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
 BEGIN
-    GROUPBOX        "WEBM options",IDC_STATIC,4,4,309,51
-    LTEXT           "Video bitrate:",IDC_STATIC,8,17,42,8
-    LTEXT           "Audio bitrate:",IDC_STATIC,8,32,42,8
-    EDITTEXT        IDC_EDIT1,51,15,34,13,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT2,51,30,34,13,ES_AUTOHSCROLL
-    LTEXT           "kbps",IDC_STATIC,87,17,16,8
-    LTEXT           "kbps",IDC_STATIC,87,32,16,8
-    PUSHBUTTON      "Ok",IDOK,263,59,50,14
+    GROUPBOX        "WEBM オプション",IDC_STATIC,4,4,309,51
+    LTEXT           "動画ビットレート(&V):",IDC_STATIC,8,17,64,8
+    LTEXT           "音声ビットレート(&A):",IDC_STATIC,8,32,64,8
+    EDITTEXT        IDC_EDIT1,73,15,34,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,73,30,34,13,ES_AUTOHSCROLL
+    LTEXT           "kbps",IDC_STATIC,110,17,16,8
+    LTEXT           "kbps",IDC_STATIC,110,32,16,8
+    PUSHBUTTON      "OK",IDOK,263,59,50,14
 END
 
 
@@ -112,7 +100,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_DIALOG1, DIALOG
     BEGIN
@@ -125,8 +113,12 @@ BEGIN
     IDD_SAVEOPTS, DIALOG
     BEGIN
         RIGHTMARGIN, 313
-        TOPMARGIN, 4
-        BOTTOMMARGIN, 92
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 93
+    END
+
+    IDD_INSERT, DIALOG
+    BEGIN
     END
 
     IDD_OPTIONS, DIALOG
@@ -140,24 +132,59 @@ END
 #endif    // APSTUDIO_INVOKED
 
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_DIALOG1 AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_INSERT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_OPTIONS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_SAVEOPTS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // 日本語 (日本) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (米国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "\0"
@@ -173,8 +200,9 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
-#endif    // English (U.S.) resources
+IDI_ICON1               ICON                    "icon1.ico"
+
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

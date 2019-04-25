@@ -597,11 +597,11 @@ void UpdateStatusText(HWND hwndDlg)
   DWORD now=timeGetTime();
   if (g_cap_state==1 && g_cap_prerolluntil)
   {
-    if (now < g_cap_prerolluntil) snprintf(pbuf,sizeof(pbuf),"PREROLL: %d - ",(g_cap_prerolluntil-now+999)/1000);
+    if (now < g_cap_prerolluntil) snprintf(pbuf,sizeof(pbuf),"録画開始 %d 秒前 - ",(g_cap_prerolluntil-now+999)/1000); /// jp
   }
   else if (g_cap_state == 2) 
   {
-    strcpy(pbuf,"Paused - ");
+    strcpy(pbuf,"一時停止中 - "); /// jp
   }
   snprintf(buf,sizeof(buf),"%s%s",pbuf,dims);
 
@@ -639,9 +639,9 @@ void UpdateCaption(HWND hwndDlg)
   if (!g_cap_state) 
   {
 #ifdef REAPER_LICECAP
-    SetWindowText(hwndDlg,"REAPER_LICEcap " LICECAP_VERSION " [stopped]");
+    SetWindowText(hwndDlg,"REAPER_LICEcap " LICECAP_VERSION " [停止中]"); /// jp
 #else
-    SetWindowText(hwndDlg,"LICEcap " LICECAP_VERSION " [stopped]");
+    SetWindowText(hwndDlg,"LICEcap " LICECAP_VERSION " [停止中]"); /// jp
 #endif
   }
   else
@@ -655,11 +655,11 @@ void UpdateCaption(HWND hwndDlg)
       DWORD now=timeGetTime();
       if (now < g_cap_prerolluntil)
       {
-        snprintf(pbuf,sizeof(pbuf),"PREROLL: %d - ",(g_cap_prerolluntil-now+999)/1000);
+        snprintf(pbuf,sizeof(pbuf),"録画開始 %d 秒前 - ",(g_cap_prerolluntil-now+999)/1000); /// jp
       }
       else g_cap_prerolluntil=0;
     }
-    snprintf(buf,sizeof(buf),"%s%.100s - LICEcap%s",pbuf,p,pbuf[0]?"":g_cap_state==1?" [recording]":" [paused]");
+    snprintf(buf,sizeof(buf),"%s%.100s - LICEcap%s",pbuf,p,pbuf[0]?"":g_cap_state==1?" [録画中]":" [一時停止中]"); /// jp
     SetWindowText(hwndDlg,buf);
   }
 }
@@ -690,7 +690,7 @@ void SWELL_SetWindowResizeable(HWND, bool);
 
 void Capture_Finish(HWND hwndDlg)
 {
-  SetDlgItemText(hwndDlg,IDC_REC,"Record...");
+  SetDlgItemText(hwndDlg,IDC_REC,"録画(&R)..."); /// jp
   EnableWindow(GetDlgItem(hwndDlg,IDC_STOP),0);
 
   if (g_cap_state)
@@ -823,7 +823,7 @@ static UINT_PTR CALLBACK SaveOptsProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPA
       snprintf(buf, sizeof(buf), "%.1f", (double)g_stop_after_msec/1000.0);
       SetDlgItemText(hwndDlg, IDC_STOPAFTER_SEC, buf);
 
-      SetDlgItemText(hwndDlg, IDC_TITLE, (g_title[0] ? g_title : "Title"));
+      SetDlgItemText(hwndDlg, IDC_TITLE, (g_title[0] ? g_title : "Title（※英字のみ）")); /// jp
       EnableWindow(GetDlgItem(hwndDlg, IDC_MS), (g_prefs&1));
       EnableWindow(GetDlgItem(hwndDlg, IDC_BIGFONT), (g_prefs&1));
       EnableWindow(GetDlgItem(hwndDlg, IDC_TITLE), (g_prefs&1));
@@ -852,7 +852,7 @@ static UINT_PTR CALLBACK SaveOptsProc(HWND hwndDlg, UINT msg, WPARAM wParam, LPA
       g_stop_after_msec=(int) (atof(buf)*1000.0);
 
       GetDlgItemText(hwndDlg, IDC_TITLE, g_title, sizeof(g_title));
-      if (!strcmp(g_title, "Title")) g_title[0]=0;
+      if (!strcmp(g_title, "Title（※英字のみ）")) g_title[0]=0; /// jp
 
       {
         BOOL t=FALSE;
@@ -1025,7 +1025,7 @@ WDL_DLGRET InsertProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
     case WM_INITDIALOG :
 		  {
         char buf[256];
-        sprintf(buf,"Insert (%d)",g_insert_cnt);
+        sprintf(buf,"挿入[%d] (&I)",g_insert_cnt); /// jp
         SetDlgItemText(hwnd,IDOK,buf);
         snprintf(buf, sizeof(buf), "%.1f", (double)g_insert_ms/1000.0);
         SetDlgItemText(hwnd, IDC_MS, buf);
@@ -1061,7 +1061,7 @@ WDL_DLGRET InsertProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam)
             GetDlgItemText(hwnd,IDC_EDIT,buf,4096);
 				    WriteTextFrame(buf,g_insert_ms,g_insert_alpha<0,g_cap_bm_txt->getWidth(),g_cap_bm_txt->getHeight(), g_insert_alpha >=0 ? g_insert_alpha : 1.0f);
 				    g_insert_cnt++;
-				    sprintf(buf,"Insert (%d)",g_insert_cnt);
+				    sprintf(buf,"挿入[%d] (&I)",g_insert_cnt); /// jp
             SetDlgItemText(hwnd,IDOK,buf);
             SetDlgItemText(hwnd,IDC_EDIT,"");
             SetFocus(GetDlgItem(hwnd,IDC_EDIT));
@@ -1523,13 +1523,13 @@ static WDL_DLGRET liceCapMainProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
           if (!g_cap_state)
           {
             //g_title[0]=0;
-            const char *tab[][2]={
-              { "GIF files (*.gif)\0*.gif\0", ".gif" },
+            const char *tab[][2]={ /// jp
+              { "GIF ファイル (*.gif)\0*.gif\0", ".gif" },
             #ifndef NO_LCF_SUPPORT
-              { "LiceCap files (*.lcf)\0*.lcf\0", ".lcf" },
+              { "LiceCap ファイル (*.lcf)\0*.lcf\0", ".lcf" },
             #endif
             #ifdef VIDEO_ENCODER_SUPPORT
-              { "WEBM files (*.webm)\0*.webm\0", ".webm" },
+              { "WEBM ファイル (*.webm)\0*.webm\0", ".webm" },
             #endif
               {NULL,NULL},
             };
@@ -1570,7 +1570,7 @@ static WDL_DLGRET liceCapMainProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
 
             qb.Add("",1);
 
-            if (WDL_ChooseFileForSave(hwndDlg, "Choose file for recording", NULL, g_last_fn,
+            if (WDL_ChooseFileForSave(hwndDlg, "録画ファイルの保存先を選択", NULL, g_last_fn, /// jp
               (char*)qb.Get(), tab[bm][1] + 1, false, g_last_fn, sizeof(g_last_fn),
               MAKEINTRESOURCE(IDD_SAVEOPTS),(void*)SaveOptsProc, 
 #ifdef _WIN32
@@ -1720,7 +1720,7 @@ static WDL_DLGRET liceCapMainProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
 #endif
 #endif
 
-                SetDlgItemText(hwndDlg,IDC_REC,"[pause]");
+                SetDlgItemText(hwndDlg,IDC_REC,"[一時停止(&P)]"); /// jp
                 EnableWindow(GetDlgItem(hwndDlg,IDC_STOP),1);
 
                 g_frate_valid=false;
@@ -1740,7 +1740,7 @@ static WDL_DLGRET liceCapMainProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
             g_pause_time = timeGetTime();
             ShowWindow(GetDlgItem(hwndDlg, IDC_INSERT), SW_SHOWNA);
             ShowWindow(GetDlgItem(hwndDlg,IDC_STATUS),SW_HIDE);
-            SetDlgItemText(hwndDlg,IDC_REC,"[unpause]");
+            SetDlgItemText(hwndDlg,IDC_REC,"[再開(&U)]"); /// jp
             g_cap_state=2;
             UpdateCaption(hwndDlg);
             UpdateStatusText(hwndDlg);
@@ -1752,7 +1752,7 @@ static WDL_DLGRET liceCapMainProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
             g_insert_cnt=0;
             ShowWindow(GetDlgItem(hwndDlg,IDC_STATUS),SW_SHOWNA);
             ShowWindow(GetDlgItem(hwndDlg, IDC_INSERT), SW_HIDE);
-            SetDlgItemText(hwndDlg,IDC_REC,"[pause]");
+            SetDlgItemText(hwndDlg,IDC_REC,"[一時停止(&P)]"); /// jp
             g_last_frame_capture_time = g_cap_prerolluntil=timeGetTime()+PREROLL_AMT;
             g_cap_state=1;
             UpdateCaption(hwndDlg);

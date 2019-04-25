@@ -1,6 +1,6 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
-// Used by licecap.rc
+﻿//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ で生成されたインクルード ファイル。
+// licecap.rc で使用
 //
 #define IDD_DIALOG1                     101
 #define IDI_ICON1                       103
